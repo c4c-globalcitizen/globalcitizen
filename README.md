@@ -3,6 +3,8 @@ Call4Code Global Citizen challenge submission
 
 Execute below commands to start the application:
 
+Extract the global-citizen-new.zip 
+
 npm install
 
 
