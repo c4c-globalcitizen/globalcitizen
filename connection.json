@@ -1,0 +1,32 @@
+     {
+        "name": "my-fabric",
+        "x-type": "hlfv11",
+        "ca": {
+            "url": "https://localhost:7054",
+            "name": "ca.org1.example.com",
+            "trustedRoots" : ["-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----", "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"],
+            "verify": true
+        },
+        "orderers": [
+            {
+               "url" : "grpcs://localhost:7050",
+               "cert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+               "hostNameOverride": "ordererHostName"
+            }
+        ],
+        "peers": [
+            {
+                "requestURL": "grpcs://localhost:7051",
+                "eventURL": "grpcs://localhost:7053",
+                "cert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+                "hostNameOverride": "peerHostName"
+            }
+        ],
+        "channel": "composerchannel",
+        "mspID": "Org1MSP",
+        "timeout": 300,
+        "globalCert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+        "maxSendSize": 20,
+        "maxRecvSize": 20
+    }
+
