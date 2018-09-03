@@ -1,0 +1,10 @@
+.heading {
+    box-align: center;
+    text-align: center;
+    background-color:  rgb(7, 54, 102);
+    width: 100%;
+    height: 90px;
+    font-weight: 200;
+    padding-top:60px;
+  
+}
