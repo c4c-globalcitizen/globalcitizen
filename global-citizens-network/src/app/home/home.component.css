@@ -11,6 +11,77 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+ @import "~bootstrap/dist/css/bootstrap.css"
+
+
+
+body {
+    background-color: red;
+}
+.heading {
+    box-align: center;
+    text-align: center;
+    background-color:  rgb(7, 54, 102) !important;
+    width: 100%;
+    height: 100px;
+    font-weight: 200;
+    margin-top: 0;
+}
+
+.form-control.ng-touched.ng-invalid {
+  border: 2px solid red;
+}
+  .login-text {
+   
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    max-width: 50%;
+    padding: .5rem;
+    text-align: center;
+  }
+    .fa-stack-1x {
+      color: black;
+    }
+  
+  
+  .login-username, .login-password {
+    background: transparent;
+    border: 0 solid;
+    border-bottom: 1px solid rgba(white, .5);
+    color: white;
+    display: block;
+    margin: 1rem;
+    padding: .5rem;
+    transition: 250ms background ease-in;
+    width: calc(100% - 3rem);
+  }
+  .login-submit {
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    display: block;
+    margin: 1rem auto;
+    min-width: 1px;
+    padding: .25rem;
+  }
+  .error {
+    display: none;
+    margin-left: 10px;
+    color: #ff0000;
+  }
+  .error_show{
+    color: red;
+    margin-left: 10px;
+  }
+  [class*=underlay] {
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    position: fixed;
+    top: 0;
+  }
   .underlay-photo {
     animation: hue-rotate 6s infinite;
     background: url('./bg.png');

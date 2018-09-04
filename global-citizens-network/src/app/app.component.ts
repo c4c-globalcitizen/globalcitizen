@@ -13,7 +13,7 @@
  */
 
 import { Component, AfterViewInit } from '@angular/core';
-import $ from 'jquery';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-root',

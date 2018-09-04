@@ -12,7 +12,10 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-home',
@@ -21,7 +24,34 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor () {
+  constructor (private router: Router, private user:UserService) {
+
+  }
+
+  loginUser(e){
+    e.preventDefault();
+  	console.log(e);
+  	var username = e.target.elements[0].value;
+  	var password = e.target.elements[1].value;
+    var userType = e.target.elements[2].value;
+    console.log("******************************************************");
+    console.log("Values Obtained from Form");
+    console.log("username: "+username);
+    console.log("password: "+password);
+    console.log("Usertype :" + userType);
+    console.log("******************************************************");
+  	if(username == 'admin' && password == 'admin') {
+      this.user.setUserLoggedIn();
+      //Set the belwo value base on the Selection.
+      if(userType == 'Global Citizen'){
+        this.router.navigate(['GlobalCitizen']);
+      } else if(userType == 'Government') {
+        this.router.navigate(['GovOrg']);
+      } else {
+        this.router.navigate(['AidOrg']);
+      }
+  		
+  	}    
   }
 
 }
