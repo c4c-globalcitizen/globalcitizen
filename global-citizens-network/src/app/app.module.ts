@@ -34,6 +34,7 @@ import { UpdatePledgeComponent } from './UpdatePledge/UpdatePledge.component';
 import { TransferFundsComponent } from './TransferFunds/TransferFunds.component';
 import { DashboardForGovComponent} from './DashboardForGov/DashboardForGov.component';
 import { Configuration }     from './configuration';
+import { UserService } from './user.service';
 import { FooterComponent } from './footer/footer.component';
 
 
@@ -61,6 +62,7 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule
   ],
   providers: [
+    UserService,
     Configuration,
     DataService
   ],
