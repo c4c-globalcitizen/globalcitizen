@@ -1,4 +1,4 @@
-<div class="container-fluid" style="width: 690px">
+<div class="container-fluid" style="width: 800px;">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h2>Login</h2>
@@ -9,41 +9,38 @@
           <div class="form-group">
             <label for="username" class="col-sm-2">User Name</label>
             <div class="col-sm-4">
-              <input 
-              required 
-              ngModel name="userName" 
-              #userName="ngModel" 
+              <input required ngModel name="userName" #userName="ngModel" 
               type="text" class="form-control" id="username" placeholder="username">                      
             </div>
              <div class="alert alert-danger" 
-             *ngIf="userName.touched && !userName.valid">Username is requried.
+             *ngIf="userName.touched && !userName.valid">Username requried.
             </div>
           </div>
-          <br/><br/>
+          <br/><br/><br/><br/>
           <div class="form-group">
             <label for="passwd" class="col-sm-2">Password</label>
             <div class="col-sm-4">
               <input required ngModel name="password" #password="ngModel"
               type="password" class="form-control" 
-              id="passwd" placeholder="Password">
+              id="passwd" placeholder="password">
               <div class="alert alert-danger" 
                  *ngIf="password.touched && !password.valid">Passwrod is requried. 
                 </div>
               </div>
             </div>
-             <br/><br/>
+             <br/><br/><br/><br/>
              <div class="form-group">
                <label for="utype" class="col-sm-2">Select Type</label>
                <div class="col-sm-4">
                  <select required ngModel name="userRole"#userRole="ngModel" 
                           class="form-control" id="utype">
-                              <option data-id="1">Global Citizen</option>
-                              <option data-id="2">Government</option>
-                              <option data-id="3">NGO or Aid worker</option>
+                              <option value="1">Global Citizen</option>
+                              <option value="2">Government</option>
+                              <option value="3">NGO or Aid worker</option>
                   </select>
                 </div>
               </div>
-              <br/><br/>
+              <br/><br/><br/><br/>
               <button type="submit" class="btn btn-primary">Sign in</button>
             </form>
       </div>
