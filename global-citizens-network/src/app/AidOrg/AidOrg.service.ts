@@ -22,6 +22,7 @@ import 'rxjs';
 @Injectable()
 export class AidOrgService {
 
+  //private NAMESPACE = 'org.global.citizens.net.AidOrg';
   private NAMESPACE = 'org.global.citizens.net.AidOrg';
 
   constructor(private dataService: DataService<AidOrg>) {

@@ -44,7 +44,8 @@ export class HomeComponent {
       this.user.setUserLoggedIn();
       //Set the belwo value base on the Selection.
       if(userType == "1"){
-        this.router.navigate(['GlobalCitizen']);
+        //this.router.navigate(['GlobalCitizen']);
+        this.router.navigate(['ProjectPledge']);
       } else if(userType == "2") {
         this.router.navigate(['GovOrg']);
       } else {
