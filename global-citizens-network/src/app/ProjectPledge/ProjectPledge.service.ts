@@ -22,8 +22,8 @@ import 'rxjs';
 @Injectable()
 export class ProjectPledgeService {
 
-  private NAMESPACE = 'org.global.citizens.net.ProjectPledge';
-
+  //private NAMESPACE = 'org.global.citizens.net.ProjectPledge';
+  private NAMESPACE = 'ProjectPledge';
   constructor(private dataService: DataService<ProjectPledge>) {
   };
 

@@ -38,20 +38,23 @@ export class HomeComponent {
     console.log("Values Obtained from Form");
     console.log("username: "+username);
     console.log("password: "+password);
-    console.log("Usertype :" + userType);
+    console.log("Usertype : " + userType);
     console.log("******************************************************");
   	if(username == 'admin' && password == 'admin') {
       this.user.setUserLoggedIn();
       //Set the belwo value base on the Selection.
-      if(userType == 'Global Citizen'){
-        this.router.navigate(['GlobalCitizen']);
-      } else if(userType == 'Government') {
+      if(userType == "1"){
+        //this.router.navigate(['GlobalCitizen']);
+        this.router.navigate(['ProjectPledge']);
+      } else if(userType == "2") {
         this.router.navigate(['GovOrg']);
       } else {
         this.router.navigate(['AidOrg']);
       }
-  		
-  	}    
+  	} else {
+      console.log("*********************Invalid password.!!!!")
+      alert('Invalid User name and Password.');
+    }   
   }
 
 }
