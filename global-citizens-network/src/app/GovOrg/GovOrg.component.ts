@@ -15,13 +15,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GovOrgService } from './GovOrg.service';
+import { ProjectPledgeService } from '../ProjectPledge/ProjectPledge.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-govorg',
   templateUrl: './GovOrg.component.html',
   styleUrls: ['./GovOrg.component.css'],
-  providers: [GovOrgService]
+  providers: [GovOrgService,ProjectPledgeService]
 })
 export class GovOrgComponent implements OnInit {
 
@@ -30,25 +31,79 @@ export class GovOrgComponent implements OnInit {
   private allParticipants;
   private participant;
   private currentId;
+  private pledge;
+  private allPledges;
   private errorMessage;
+  private selectedPledges;
+  
 
   govOrgId = new FormControl('', Validators.required);
   fundedPledges = new FormControl('', Validators.required);
   projectPledge = new FormControl('', Validators.required);
 
 
-  constructor(public serviceGovOrg: GovOrgService, fb: FormBuilder) {
+  constructor(public serviceGovOrg: GovOrgService, public pledgeService : ProjectPledgeService, fb: FormBuilder) {
     this.myForm = fb.group({
       govOrgId: this.govOrgId,
       fundedPledges: this.fundedPledges,
       projectPledge: this.projectPledge
     });
+    this.selectedPledges = []; 
   };
 
   ngOnInit(): void {
+    this.getPledge();
     this.loadAll();
   }
 
+  getPledge(): Promise<any> {
+    const tempList = [];
+    //alert('getPledge');
+    return this.pledgeService.getAll()
+    .toPromise()
+    .then ((result) => {
+      result.forEach(pledge => {
+        tempList.push(pledge);
+      });
+      this.allPledges = tempList;
+      //alert(JSON.stringify(this.allPledges));
+    }
+    )
+    .catch((error) => {
+     if (error === 'Server error') {
+       this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+     } else if (error === '404 - Not Found') {
+       this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+     } else {
+       this.errorMessage = error;
+     }
+   });
+   }
+
+   getPledgetID(pledge: String) {
+     return pledge.substring(pledge.indexOf('#')+1);
+   }
+
+
+   mapGovOrgWithPledge(){
+    for(let i=0; i < this.allParticipants.length;i++){
+      if(!this.allParticipants[i].fundsRequired || this.allParticipants[i].fundsRequired.value==undefined ) {
+        //This is not a proper way to fix this 
+        //Need to keep the the fundsRequired as undefined.
+        this.allParticipants[i].fundsRequired = null;
+      }
+      let govPledge = this.getPledgetID(this.allParticipants[i].projectPledge.value);
+      for(let i;i<this.allPledges.length;i++) {
+        if(govPledge==this.allPledges[i].projectPledge){
+          this.selectedPledges.push(this.allPledges[i]);
+        }
+      }
+    }
+    //alert("After comparision!");
+   // alert(JSON.stringify(this.selectedPledges));
+   }
+
+ 
   loadAll(): Promise<any> {
     const tempList = [];
     return this.serviceGovOrg.getAll()
@@ -57,9 +112,11 @@ export class GovOrgComponent implements OnInit {
       this.errorMessage = null;
       result.forEach(participant => {
         tempList.push(participant);
+        this.allParticipants = tempList;
+        //alert(JSON.stringify(this.allParticipants));
+        this.mapGovOrgWithPledge(); 
       });
-      this.allParticipants = tempList;
-    })
+    } )
     .catch((error) => {
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';

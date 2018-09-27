@@ -112,6 +112,7 @@ export class ProjectPledgeComponent implements OnInit {
   }
   addTransaction(form: any): Promise<any> {
     alert(this.PledgeID);
+    //var gov[] = GovOrgService.
     this.Transaction = {
       $class: 'org.global.citizens.net.SendPledgeToGovOrg',
       'govOrg': ['org.global.citizens.net.GovOrg#1067'],
@@ -144,23 +145,23 @@ export class ProjectPledgeComponent implements OnInit {
       'aidOrg': 'org.global.citizens.net.AidOrg'+'#'+this.aidOrg.value,
       'funds': []
     };
-
-    this.myForm.setValue({
-      'pledgeId': null,
-      'name': null,
-      'decription': null,
-      'fundsRequired': null,
-      'status': null,
-      'aidOrg': null,
-      'funds': null
-    });
-
+    
+   // this.myForm.setValue({
+     // 'pledgeId': null,
+    //  'name': null,
+     // 'decription': null,
+     // 'fundsRequired': null,
+     /// 'status': null,
+    //  'aidOrg': null,
+    //  'funds': null
+   // });
+   alert('before addasset : '+this.pledgeId.value);
     return this.serviceProjectPledge.addAsset(this.asset)
     .toPromise()
     .then(() => {
       //this.addTransaction(this.myForm);
       this.errorMessage = null;
-      this.myForm.setValue({
+      /*this.myForm.setValue({
         'pledgeId': null,
         'name': null,
         'decription': null,
@@ -168,8 +169,10 @@ export class ProjectPledgeComponent implements OnInit {
         'status': null,
         'aidOrg': null,
         'funds': null
-      });
+      });*/
       this.loadAll();
+      alert('in addasset : '+this.pledgeId.value);
+      this.addTransaction(this.pledgeId.value);
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -178,6 +181,7 @@ export class ProjectPledgeComponent implements OnInit {
           this.errorMessage = error;
       }
     });
+    
   }
 
 
