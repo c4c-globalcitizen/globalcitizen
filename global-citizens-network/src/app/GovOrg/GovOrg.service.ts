@@ -22,7 +22,8 @@ import 'rxjs';
 @Injectable()
 export class GovOrgService {
 
-  private NAMESPACE = 'org.global.citizens.net.GovOrg';
+  //private NAMESPACE = 'org.global.citizens.net.GovOrg';
+  private NAMESPACE = 'GovOrg';
 
   constructor(private dataService: DataService<GovOrg>) {
   };
